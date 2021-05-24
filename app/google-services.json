@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180871762567",
+    "project_id": "grab-it-and-go",
+    "storage_bucket": "grab-it-and-go.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180871762567:android:9a0cf01c9aa7b871435e22",
+        "android_client_info": {
+          "package_name": "com.example.grabitandgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180871762567-n1e136741855adjirenu2rqd4m5ep40g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTyI9fWFhFtu0vgh2pmN43xDsuIQoCnUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180871762567-n1e136741855adjirenu2rqd4m5ep40g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

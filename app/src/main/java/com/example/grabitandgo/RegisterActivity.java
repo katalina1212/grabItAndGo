@@ -2,7 +2,9 @@ package com.example.grabitandgo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -29,5 +31,26 @@ public class RegisterActivity extends AppCompatActivity {
         emailText=findViewById(R.id.email_text);
         passwordText=findViewById(R.id.password_text);
         password2Text=findViewById(R.id.password2_text);
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openTermsConditionsActivity();
+            }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openLoginActivity();
+            }
+        });
+    }
+    private void openTermsConditionsActivity(){
+        Intent intent = new Intent(this, TermsConditionsActivity.class);
+        startActivity(intent);
+    }
+
+    private void openLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
