@@ -7,7 +7,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -15,6 +22,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private EditText emailText;
     private EditText passwordText;
+
+    private FirebaseAuth mAuth;
+
+    private LoginActivity thisActivity=this;
 
 
     @Override
@@ -27,9 +38,31 @@ public class LoginActivity extends AppCompatActivity {
         emailText =findViewById(R.id.email_text);
         passwordText =findViewById(R.id.password_text);
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openHomePage();
+                mAuth.signInWithEmailAndPassword(emailText.getText().toString(), passwordText.getText().toString())
+                        .addOnCompleteListener(thisActivity, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+
+                                    FirebaseUser user = mAuth.getCurrentUser();
+
+                                    openHomePage(user.getUid());
+
+                                    System.out.println(user.getEmail());
+                                } else {
+                                    // If sign in fails, display a message to the user.
+
+                                    System.out.println("Failed to login");
+                                }
+
+                            }
+                        });
             }
         });
 
@@ -37,8 +70,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) { openRegisterActivity();}
         });
     }
-    private void openHomePage(){
+    private void openHomePage(String userid){
         Intent intent = new Intent(this, MainActivity.class);
+        Bundle b = new Bundle();
+        b.putString("user", userid); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
     }
 
