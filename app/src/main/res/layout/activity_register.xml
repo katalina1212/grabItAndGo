@@ -36,7 +36,7 @@
         android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:text="Already have an account? Login here."
         android:textColor="@color/white"
         android:textSize="16sp"

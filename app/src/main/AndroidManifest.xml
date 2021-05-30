@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrabItAndGo">
-        <activity android:name=".cardDetailsActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".OrdersActivity" />
+        <activity android:name=".RewardsActivity" />
+        <activity android:name=".ConnectActivity" />
+        <activity android:name=".cardDetailsActivity" />
         <activity android:name=".TermsConditionsActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">

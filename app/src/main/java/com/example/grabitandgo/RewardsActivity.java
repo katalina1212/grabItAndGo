@@ -1,26 +1,26 @@
 package com.example.grabitandgo;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class RewardsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rewards);
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.rewards);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.connect:
                         startActivity(new Intent(getApplicationContext(), ConnectActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.rewards:
-                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.orders:
                         startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
@@ -50,7 +50,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
-
 }
