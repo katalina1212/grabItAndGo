@@ -7,15 +7,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+//import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText usernameText;
     private Button registerBtn;
-    private Button loginBtn;
+    private TextView loginBtn;
     private EditText emailText;
     private EditText passwordText;
     private EditText password2Text;
+
+    //private FirebaseAuth mAuth;
 
     public RegisterActivity() {
     }
@@ -31,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailText=findViewById(R.id.email_text);
         passwordText=findViewById(R.id.password_text);
         password2Text=findViewById(R.id.password2_text);
+
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
