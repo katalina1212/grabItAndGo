@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/caffee" />
+        app:srcCompat="@drawable/coffee" />
 
     <EditText
         android:id="@+id/email_text"
@@ -59,8 +59,8 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="281dp"
-        android:layout_height="36dp"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
         android:layout_marginStart="64dp"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="32dp"

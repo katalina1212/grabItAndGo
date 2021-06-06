@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 myRef.child("username").setValue(usernameText.getText().toString());
 
 
-                                openTermsConditionsActivity();
+                                openTermsConditionsActivity(user.getUid());
                                 System.out.println(user.getEmail());
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -80,8 +80,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-    private void openTermsConditionsActivity(){
+    private void openTermsConditionsActivity(String userid){
         Intent intent = new Intent(this, TermsConditionsActivity.class);
+        Bundle b = new Bundle();
+        b.putString("user", userid); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
     }
 

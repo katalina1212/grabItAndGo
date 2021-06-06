@@ -1,44 +1,26 @@
 package com.example.grabitandgo;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
-    private Button clickSelectionBtn;
+public class CategoriesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-       /* clickSelectionBtn=findViewById(R.id.clickSelection_btn);
-
-        clickSelectionBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openCategoriesActivity();
-            }
-
-            private void openCategoriesActivity() {
-                Intent intent = new Intent(this, CategoriesActivity.class);
-                startActivity(intent);
-            }
-
-        });*/
+        setContentView(R.layout.activity_categories);
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.connect);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.connect:
                         startActivity(new Intent(getApplicationContext(), ConnectActivity.class));
@@ -68,7 +52,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
-
 }
