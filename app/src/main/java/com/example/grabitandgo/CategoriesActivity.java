@@ -1,56 +1,27 @@
 package com.example.grabitandgo;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+public class CategoriesActivity {
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
+    private String name;
+    private String image;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+    public CategoriesActivity(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-public class CategoriesActivity extends AppCompatActivity {
+    public String getName() {
+        return name;
+    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categories);
+    public String getImage() {
+        return image;
+    }
 
-        //Initialize and assign Variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set Home selected
-        //bottomNavigationView.setSelectedItemId(R.id.connect);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.connect:
-                        startActivity(new Intent(getApplicationContext(), ConnectActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.rewards:
-                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.settings:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-
-                return false;
-            }
-        });
+    public void setImage(String image) {
+        this.image = image;
     }
 }
