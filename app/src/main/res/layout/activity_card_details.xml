@@ -10,13 +10,13 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="140dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/coffee" />
+        app:srcCompat="@drawable/coffee" />
 
     <EditText
         android:id="@+id/cardholder_text"

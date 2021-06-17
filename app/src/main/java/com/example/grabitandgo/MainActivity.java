@@ -15,24 +15,21 @@ public class MainActivity extends AppCompatActivity {
 
     private Button clickSelectionBtn;
 
+    private MainActivity thisActivity=this;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* clickSelectionBtn=findViewById(R.id.clickSelection_btn);
+        clickSelectionBtn=findViewById(R.id.clickSelection_btn);
 
         clickSelectionBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openCategoriesActivity();
             }
-
-            private void openCategoriesActivity() {
-                Intent intent = new Intent(this, CategoriesActivity.class);
-                startActivity(intent);
-            }
-
-        });*/
+        });
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -70,5 +67,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+        private void openCategoriesActivity() {
+            Intent intent = new Intent(thisActivity, CategoriesActivity.class);
+            startActivity(intent);
+        }
 }

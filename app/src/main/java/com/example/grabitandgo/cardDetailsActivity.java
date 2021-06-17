@@ -23,6 +23,8 @@ public class cardDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_details);
 
+        getSupportActionBar().setTitle("Card details");
+
         cardholderText = findViewById(R.id.cardholder_text);
         cardNumberText = findViewById(R.id.cardnumber_text);
         validText = findViewById(R.id.valid_text);
