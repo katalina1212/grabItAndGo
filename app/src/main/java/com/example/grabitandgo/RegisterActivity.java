@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,11 +50,19 @@ public class RegisterActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        //check if user is already logged in
+        /*if(mAuth.getCurrentUser() !=null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }*/
+
         registerBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mAuth.createUserWithEmailAndPassword(emailText.getText().toString(), passwordText.getText().toString())
+                mAuth.createUserWithEmailAndPassword(emailText.getText().toString().trim(), passwordText.getText().toString().trim())
                         .addOnCompleteListener(thisActivity, (OnCompleteListener<AuthResult>) task -> {
                             if (task.isSuccessful()) {
+                               //Toast.makeText(RegisterActivity.this, "User created", Toast.LENGTH_SHORT).show();
+
                                 // Sign in success, update UI with the signed-in user's information
 
                                 FirebaseUser user = mAuth.getCurrentUser();
@@ -65,9 +75,25 @@ public class RegisterActivity extends AppCompatActivity {
                                 openTermsConditionsActivity(user.getUid());
                                 System.out.println(user.getEmail());
                             } else {
+                                //Toast.makeText(RegisterActivity.this, "Error!" +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                 // If sign in fails, display a message to the user.
 
-
+                               /* if(TextUtils.isEmpty(username_text)){
+                                    usernameText.setError("Email is required");
+                                    return;
+                                }
+                                if(TextUtils.isEmpty(email_text)){
+                                   emailText.setError("Email is required");
+                                   return;
+                                }
+                                if(TextUtils.isEmpty(password_text)){
+                                    passwordText.setError("Email is required");
+                                    return;
+                                }
+                                if(password_text.length()<8){
+                                    passwordText.setError("Password must be longer than 8 characters");
+                                    return;
+                                }*/
                             }
 
                         });
