@@ -46,8 +46,8 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
 
                 /* Fill it with Data */
                 emailIntent.setType("plain/text");
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"cakeshop@gmail.com"});
-                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Cake shop");
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"GrabItAndGo@gmail.com"});
+                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Cafe shop");
 
                 /* Send it off to the Activity-Chooser */
                 thisActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
