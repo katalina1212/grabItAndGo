@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
         private void openCategoriesActivity() {
-            Intent intent = new Intent(thisActivity, CategoriesActivity.class);
+            Intent intent = new Intent(thisActivity, CoffeeSelectionActivity.class);
             startActivity(intent);
         }
 }

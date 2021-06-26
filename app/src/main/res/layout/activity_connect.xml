@@ -13,18 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="410dp" />
 
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottom_navigation"
-        app:itemBackground="@color/design_default_color_primary_dark"
-        app:itemTextColor="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        app:menu="@menu/menu_navigation"
-        android:layout_alignParentBottom="true"/>
-
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="90dp"
@@ -64,6 +52,18 @@
         android:layout_toEndOf="@+id/imageView9"
         android:layout_toRightOf="@+id/imageView9"
         app:srcCompat="@drawable/envelope_icon" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/design_default_color_primary_dark"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
+
+
 
 
 </RelativeLayout>

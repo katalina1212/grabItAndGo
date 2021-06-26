@@ -1,7 +1,5 @@
 package com.example.grabitandgo;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.ActivityNotFoundException;
@@ -9,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -19,7 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class ConnectActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
@@ -34,9 +31,9 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
         this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        FacebookButton = findViewById(R.id.imageView8);
-        InstagramButton = findViewById(R.id.imageView9);
-        EmailButton = findViewById(R.id.imageView10);
+        FacebookButton = findViewById(R.id.face_btn);
+        InstagramButton = findViewById(R.id.insta_btn);
+        EmailButton = findViewById(R.id.email_btn);
 
         EmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
