@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,9 +32,11 @@ public class CategoryListItemAdapter extends ArrayAdapter<CoffeeCategory> {
         final CoffeeCategory currentItem = getItem(position);
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.category_list_item, parent, false);
         TextView categoryName = convertView.findViewById(R.id.category_name);
+        TextView categoryPrice = convertView.findViewById(R.id.category_price);
+        categoryPrice.setText("$" + currentItem.getPrice());
 
         ImageView categoryImage = convertView.findViewById(R.id.category_image);
-        //Picasso.with(parent.getContext()).load(currentItem.getImage()).into(categoryImage);
+        Picasso.with(parent.getContext()).load(currentItem.getImage()).into(categoryImage);
 
 
         categoryName.setOnClickListener(new View.OnClickListener() {

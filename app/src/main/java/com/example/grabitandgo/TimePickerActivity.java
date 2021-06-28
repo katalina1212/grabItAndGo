@@ -50,7 +50,6 @@ public class TimePickerActivity extends AppCompatActivity {
                                         "HH:mm"
                                 );
 
-
                                 try {
                                     Date date = f24Hours.parse(time);
 
