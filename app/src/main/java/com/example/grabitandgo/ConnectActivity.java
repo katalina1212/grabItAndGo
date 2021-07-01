@@ -16,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class ConnectActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -27,13 +28,14 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
     private Bundle savedInstanceState;
 
     @Override
-   protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         FacebookButton = findViewById(R.id.face_btn);
         InstagramButton = findViewById(R.id.insta_btn);
         EmailButton = findViewById(R.id.email_btn);
+
 
         EmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +90,48 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
             }
         });
 
+        /*//Initialize and assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.connect);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.connect:
+                        return true;
+                    case R.id.rewards:
+                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.orders:
+                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+
+                return false;
+            }
+        });*/
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+
 
 
     /**
@@ -116,46 +154,3 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
 }
-
-/*
-  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect);
-
-        //Initialize and assign Variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.connect);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.connect:
-                        return true;
-                    case R.id.rewards:
-                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.settings:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-
-                return false;
-            }
-        });
-    }
- */

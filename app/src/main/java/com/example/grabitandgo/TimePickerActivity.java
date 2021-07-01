@@ -25,6 +25,9 @@ public class TimePickerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_picker);
 
+        Order o = (Order) getIntent().getExtras().get("order");
+        System.out.println(o.getCoffee_id());
+
         tvTimer1 =findViewById(R.id.tv_timer1);
 
         tvTimer1.setOnClickListener(new View.OnClickListener(){

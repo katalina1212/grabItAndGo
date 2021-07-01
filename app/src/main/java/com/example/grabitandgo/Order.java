@@ -1,8 +1,9 @@
 package com.example.grabitandgo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
 
     private String order_id;
     private String coffee_id;
@@ -11,9 +12,10 @@ public class Order {
     private int size;
     private int sugar;
     private int milk;
-    private Date date;
+    private Date orderDate;
+    private Date pickUpDate;
 
-    public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date date) {
+    public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, Date pickUpDate) {
         this.order_id = order_id;
         this.coffee_id = coffee_id;
         this.price = price;
@@ -21,7 +23,8 @@ public class Order {
         this.size = size;
         this.sugar = sugar;
         this.milk = milk;
-        this.date = date;
+        this.orderDate = orderDate;
+        this.pickUpDate = pickUpDate;
     }
 
     public String getOrder_id() {
@@ -52,9 +55,11 @@ public class Order {
         return milk;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOrderDate() {
+        return orderDate;
     }
+
+    public Date getPickUpDateDate() { return pickUpDate;}
 
 
 }
