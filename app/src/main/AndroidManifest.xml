@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrabItAndGo">
-        <activity android:name=".TimePickerActivity"></activity>
+        <activity android:name=".ConfirmationActivity"></activity>
+        <activity android:name=".TimePickerActivity" />
         <activity android:name=".SelectionItemActivity" />
         <activity android:name=".CoffeeSelectionActivity" />
         <!--
