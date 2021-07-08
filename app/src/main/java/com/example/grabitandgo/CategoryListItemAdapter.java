@@ -62,6 +62,7 @@ public class CategoryListItemAdapter extends ArrayAdapter<CoffeeCategory> {
     private void openMenu(Context context, CoffeeCategory category) {
         Intent intent = new Intent(context, SelectionItemActivity.class);
         Bundle b = new Bundle();
+        b.putString("id", category.getId()); //Your id
         b.putString("name", category.getName()); //Your id
         b.putString("image", category.getImage()); //Your id
         b.putDouble("price", category.getPrice()); //Your id

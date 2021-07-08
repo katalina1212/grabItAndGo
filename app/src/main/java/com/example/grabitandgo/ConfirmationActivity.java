@@ -6,15 +6,53 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
 
 public class ConfirmationActivity extends AppCompatActivity {
+
+    private ImageView imageView12;
+    private TextView item_name;
+    private TextView qty;
+    private TextView item_price;
+    private TextView reward_point;
+    private TextView collection_time;
+    private Button confirm_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
+
+        imageView12 =findViewById(R.id.imageView12);
+        item_name =findViewById(R.id.item_name);
+        qty =findViewById(R.id.qty);
+        item_price =findViewById(R.id.item_price);
+        reward_point =findViewById(R.id.reward_point);
+        collection_time =findViewById(R.id.collection_time);
+        confirm_btn =findViewById(R.id.confirm_btn);
+
+        Order o = (Order) getIntent().getExtras().get("order");
+        item_name.setText(o.getCoffeeName());
+        qty.setText(String.valueOf(o.getQty()));
+        reward_point.setText(String.valueOf(o.getQty()));
+        collection_time.setText(o.getPickUpDateDate().toString());
+        item_price.setText(String.valueOf(o.getPrice()));
+
+        Picasso.with(this).load(o.getCoffeeImage()).into(imageView12);
+
+        confirm_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openQRCodeActivity(o);
+            }
+        });
+
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -50,5 +88,13 @@ public class ConfirmationActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void openQRCodeActivity(Order o){
+        Intent intent = new Intent(this, QRCodeActivity.class);
+        // Bundle b = new Bundle();
+        intent.putExtra("order", o); //Your id
+        // intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
     }
     }

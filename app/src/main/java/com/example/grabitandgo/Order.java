@@ -1,5 +1,8 @@
 package com.example.grabitandgo;
 
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +18,10 @@ public class Order implements Serializable {
     private Date orderDate;
     private Date pickUpDate;
 
-    public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, Date pickUpDate) {
+    private String coffeeImage;
+    private String coffeeName;
+
+    public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, Date pickUpDate, String coffeeName, String CoffeeImage) {
         this.order_id = order_id;
         this.coffee_id = coffee_id;
         this.price = price;
@@ -24,6 +30,24 @@ public class Order implements Serializable {
         this.sugar = sugar;
         this.milk = milk;
         this.orderDate = orderDate;
+        this.pickUpDate = pickUpDate;
+        this.coffeeImage = coffeeImage;
+        this.coffeeName = coffeeName;
+    }
+
+    public String getCoffeeImage() {
+        return coffeeImage;
+    }
+
+    public String getCoffeeName() {
+        return coffeeName;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setPickUpDate(Date pickUpDate) {
         this.pickUpDate = pickUpDate;
     }
 

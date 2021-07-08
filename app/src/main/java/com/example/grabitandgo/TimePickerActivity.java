@@ -3,6 +3,7 @@ package com.example.grabitandgo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class TimePickerActivity extends AppCompatActivity {
 
     TextView tvTimer1;
     int t1Hour, t1Minute;
+    private Button confirm_time_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,14 @@ public class TimePickerActivity extends AppCompatActivity {
         System.out.println(o.getCoffee_id());
 
         tvTimer1 =findViewById(R.id.tv_timer1);
+        confirm_time_btn =findViewById(R.id.confirm_time_btn);
+
+        confirm_time_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openConfirmationActivity(o);
+            }
+        });
 
         tvTimer1.setOnClickListener(new View.OnClickListener(){
 
@@ -48,7 +58,7 @@ public class TimePickerActivity extends AppCompatActivity {
                                 t1Minute = minute;
 
                                 //Store hour and minute in string
-                                String time = t1Hour + "=" + t1Minute;
+                                String time = t1Hour + ":" + t1Minute;
                                 //Initialize 24 hours time format
                                 SimpleDateFormat f24Hours = new SimpleDateFormat(
                                         "HH:mm"
@@ -56,6 +66,8 @@ public class TimePickerActivity extends AppCompatActivity {
 
                                 try {
                                     Date date = f24Hours.parse(time);
+                                    o.setPickUpDate(date);
+
 
                                     //Initialize 12 hours time format
                                     SimpleDateFormat f12Hours = new SimpleDateFormat(
@@ -78,5 +90,12 @@ public class TimePickerActivity extends AppCompatActivity {
         }
 
         );
+    }
+    private void openConfirmationActivity(Order o){
+        Intent intent = new Intent(this, ConfirmationActivity.class);
+        // Bundle b = new Bundle();
+        intent.putExtra("order", o); //Your id
+        // intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
     }
 }

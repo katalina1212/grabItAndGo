@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.grabitandgo"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -44,4 +44,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    implementation 'com.stripe:stripe-android:15.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
