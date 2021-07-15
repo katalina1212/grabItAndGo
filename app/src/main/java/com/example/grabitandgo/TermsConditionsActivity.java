@@ -22,7 +22,7 @@ public class TermsConditionsActivity extends AppCompatActivity {
 
         acceptBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openCardDetailsActivity();
+                openMainActivity();
             }
         });
 
@@ -32,8 +32,8 @@ public class TermsConditionsActivity extends AppCompatActivity {
             }
         });
     }
-    private void openCardDetailsActivity(){
-        Intent intent = new Intent(this, cardDetailsActivity.class);
+    private void openMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

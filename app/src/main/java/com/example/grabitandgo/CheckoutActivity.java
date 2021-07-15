@@ -1,6 +1,5 @@
 package com.example.grabitandgo;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-public class CheckoutActivityJava extends AppCompatActivity {
+public class CheckoutActivity extends AppCompatActivity {
 
     // 10.0.2.2 is the Android emulator's alias to localhost
     private static final String BACKEND_URL = "https://dazzling-crater-lake-38194.herokuapp.com/";
@@ -44,7 +43,7 @@ public class CheckoutActivityJava extends AppCompatActivity {
     private String paymentIntentClientSecret;
     private Stripe stripe;
     private TextView amountTextView;
-
+    Order o;
 
 
     @Override
@@ -52,7 +51,11 @@ public class CheckoutActivityJava extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout_java);
 
+        o=(Order)getIntent().getExtras().get("order");
+
         amountTextView = findViewById(R.id.amountTextView);
+
+        amountTextView.setText("AUD"+o.getPrice());
 
         // Configure the SDK with your Stripe publishable key so it can make requests to Stripe
         stripe = new Stripe(
@@ -65,12 +68,12 @@ public class CheckoutActivityJava extends AppCompatActivity {
         // Create a PaymentIntent by calling the server's endpoint.
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
 
-        double amount = Double.valueOf(amountTextView.getText().toString()) * 100;
+        double amount = o.getPrice() * 100;
 
         Map<String, Object> payMap = new HashMap<>();
         Map<String, Object> itemMap = new HashMap<>();
         List<Map<String, Object>> itemList = new ArrayList<>();
-        payMap.put("currency", "usd"); //dont change currency in testing phase otherwise it won't work
+        payMap.put("currency", "aud"); //dont change currency in testing phase otherwise it won't work
         itemMap.put("id", "photo_subscription");
         itemMap.put("amount", amount);
         itemList.add(itemMap);
@@ -121,13 +124,13 @@ public class CheckoutActivityJava extends AppCompatActivity {
         paymentIntentClientSecret = responseMap.get("clientSecret");
     }
     private static final class PayCallback implements Callback {
-        @NonNull private final WeakReference<CheckoutActivityJava> activityRef;
-        PayCallback(@NonNull CheckoutActivityJava activity) {
+        @NonNull private final WeakReference<CheckoutActivity> activityRef;
+        PayCallback(@NonNull CheckoutActivity activity) {
             activityRef = new WeakReference<>(activity);
         }
         @Override
         public void onFailure(@NonNull Call call, @NonNull IOException e) {
-            final CheckoutActivityJava activity = activityRef.get();
+            final CheckoutActivity activity = activityRef.get();
             if (activity == null) {
                 return;
             }
@@ -140,7 +143,7 @@ public class CheckoutActivityJava extends AppCompatActivity {
         @Override
         public void onResponse(@NonNull Call call, @NonNull final Response response)
                 throws IOException {
-            final CheckoutActivityJava activity = activityRef.get();
+            final CheckoutActivity activity = activityRef.get();
             if (activity == null) {
                 return;
             }
@@ -155,15 +158,16 @@ public class CheckoutActivityJava extends AppCompatActivity {
             }
         }
     }
-    private static final class PaymentResultCallback
+    private final class PaymentResultCallback
             implements ApiResultCallback<PaymentIntentResult> {
-        @NonNull private final WeakReference<CheckoutActivityJava> activityRef;
-        PaymentResultCallback(@NonNull CheckoutActivityJava activity) {
+        @NonNull private final WeakReference<CheckoutActivity> activityRef;
+        PaymentResultCallback(@NonNull CheckoutActivity activity) {
             activityRef = new WeakReference<>(activity);
         }
         @Override
         public void onSuccess(@NonNull PaymentIntentResult result) {
-            final CheckoutActivityJava activity = activityRef.get();
+            openQRCodeActivity(o);
+            final CheckoutActivity activity = activityRef.get();
             if (activity == null) {
                 return;
             }
@@ -186,12 +190,19 @@ public class CheckoutActivityJava extends AppCompatActivity {
         }
         @Override
         public void onError(@NonNull Exception e) {
-            final CheckoutActivityJava activity = activityRef.get();
+            final CheckoutActivity activity = activityRef.get();
             if (activity == null) {
                 return;
             }
             // Payment request failed – allow retrying using the same payment method
             activity.displayAlert("Error", e.toString());
         }
+    }
+    void openQRCodeActivity(Order o){
+        Intent intent = new Intent(this, QRCodeActivity.class);
+        // Bundle b = new Bundle();
+        intent.putExtra("order", o); //Your id
+        // intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
     }
 }

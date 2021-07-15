@@ -1,5 +1,6 @@
 package com.example.grabitandgo;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.ActivityNotFoundException;
@@ -7,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,6 +37,41 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
         FacebookButton = findViewById(R.id.face_btn);
         InstagramButton = findViewById(R.id.insta_btn);
         EmailButton = findViewById(R.id.email_btn);
+
+        //Initialize and assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.connect);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.connect:
+                        return true;
+                    case R.id.rewards:
+                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.orders:
+                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
 
 
         EmailButton.setOnClickListener(new View.OnClickListener() {
@@ -90,45 +127,11 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
             }
         });
 
-        /*//Initialize and assign Variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.connect);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.connect:
-                        return true;
-                    case R.id.rewards:
-                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.settings:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-
-                return false;
-            }
-        });*/
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
 

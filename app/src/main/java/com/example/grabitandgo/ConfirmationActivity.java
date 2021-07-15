@@ -49,7 +49,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openQRCodeActivity(o);
+                openCheckoutActivity(o);
             }
         });
 
@@ -90,8 +90,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         });
     }
 
-    private void openQRCodeActivity(Order o){
-        Intent intent = new Intent(this, QRCodeActivity.class);
+    private void openCheckoutActivity(Order o){
+        Intent intent = new Intent(this, CheckoutActivity.class);
         // Bundle b = new Bundle();
         intent.putExtra("order", o); //Your id
         // intent.putExtras(b); //Put your id to your next Intent

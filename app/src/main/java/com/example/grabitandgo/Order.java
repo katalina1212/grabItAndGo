@@ -31,7 +31,7 @@ public class Order implements Serializable {
         this.milk = milk;
         this.orderDate = orderDate;
         this.pickUpDate = pickUpDate;
-        this.coffeeImage = coffeeImage;
+        this.coffeeImage = CoffeeImage;
         this.coffeeName = coffeeName;
     }
 
