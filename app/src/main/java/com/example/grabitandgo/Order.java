@@ -21,7 +21,9 @@ public class Order implements Serializable {
     private String coffeeImage;
     private String coffeeName;
 
-    public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, Date pickUpDate, String coffeeName, String CoffeeImage) {
+    private String userId;
+
+    public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, Date pickUpDate, String coffeeName, String CoffeeImage, String userId) {
         this.order_id = order_id;
         this.coffee_id = coffee_id;
         this.price = price;
@@ -33,6 +35,7 @@ public class Order implements Serializable {
         this.pickUpDate = pickUpDate;
         this.coffeeImage = CoffeeImage;
         this.coffeeName = coffeeName;
+        this.userId = userId;
     }
 
     public String getCoffeeImage() {
@@ -85,7 +88,17 @@ public class Order implements Serializable {
 
     public Date getPickUpDateDate() { return pickUpDate;}
 
+    public String getUserId() {
+        return userId;
+    }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
 }
 
 

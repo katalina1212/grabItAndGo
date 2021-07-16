@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -24,6 +27,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +59,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         amountTextView = findViewById(R.id.amountTextView);
 
-        amountTextView.setText("AUD"+o.getPrice());
+        amountTextView.setText("AUD "+o.getPrice());
 
         // Configure the SDK with your Stripe publishable key so it can make requests to Stripe
         stripe = new Stripe(
@@ -166,6 +170,9 @@ public class CheckoutActivity extends AppCompatActivity {
         }
         @Override
         public void onSuccess(@NonNull PaymentIntentResult result) {
+
+            saveOrder(o);
+
             openQRCodeActivity(o);
             final CheckoutActivity activity = activityRef.get();
             if (activity == null) {
@@ -204,5 +211,14 @@ public class CheckoutActivity extends AppCompatActivity {
         intent.putExtra("order", o); //Your id
         // intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
+    }
+
+    String saveOrder (Order o){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String id = String.valueOf(new Date().getTime());
+        o.setOrder_id(App.user.getUid()+"/"+id);
+        DatabaseReference myRef = database.getReference("users/"+App.user.getUid()+"/orders/"+id);
+        myRef.child("CoffeeId").setValue(o.getCoffee_id());
+        return id;
     }
 }

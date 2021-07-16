@@ -91,15 +91,15 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 // Sign in success, update UI with the signed-in user's information
 
-                                FirebaseUser user = mAuth.getCurrentUser();
+                                App.user = mAuth.getCurrentUser();
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("users/"+user.getUid());
+                                DatabaseReference myRef = database.getReference("users/"+App.user.getUid());
                                 myRef.child("username").setValue(usernameText.getText().toString());
 
 
-                                openTermsConditionsActivity(user.getUid());
-                                System.out.println(user.getEmail());
+                                openTermsConditionsActivity(App.user.getUid());
+                                System.out.println(App.user.getEmail());
                             } else {
                                 //Toast.makeText(RegisterActivity.this, "Error!" +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                 // If sign in fails, display a message to the user.

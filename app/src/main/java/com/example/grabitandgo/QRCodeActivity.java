@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.zxing.WriterException;
 
+import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class QRCodeActivity extends AppCompatActivity {
@@ -19,13 +24,30 @@ public class QRCodeActivity extends AppCompatActivity {
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
 
+    private Button location_btn;
+    private Button contshop_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
 
+        Order o = (Order) getIntent().getExtras().get("order");
+
+        qrgEncoder = new QRGEncoder(o.getOrder_id(), null, QRGContents.Type.TEXT, 300);
+
+        try {
+            // Getting QR-Code as Bitmap
+            bitmap = qrgEncoder.encodeAsBitmap();
+
+        } catch (WriterException e) {
+
+        }
+
         qrimg=(ImageView)findViewById(R.id.qrcode);
 
+        // Setting Bitmap to ImageView
+        qrimg.setImageBitmap(bitmap);
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -61,6 +83,34 @@ public class QRCodeActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        location_btn=findViewById(R.id.location_btn);
+        contshop_btn=findViewById(R.id.contshop_btn);
+
+
+
+        location_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openConnectActivity();
+            }
+        });
+
+        contshop_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openCoffeeSelectionActivity();
+            }
+        });
+    }
+    private void openConnectActivity(){
+        Intent intent = new Intent(this, ConnectActivity.class);
+        startActivity(intent);
     }
 
-}
+    private void openCoffeeSelectionActivity(){
+        Intent intent = new Intent(this, CoffeeSelectionActivity.class);
+        startActivity(intent);
+    }
+
+    }
+
