@@ -40,6 +40,11 @@ public class TimePickerActivity extends AppCompatActivity {
             }
         });
 
+        Date date = new Date();
+        t1Hour= date.getHours();
+        t1Minute = date.getMinutes();
+
+
         tvTimer1.setOnClickListener(new View.OnClickListener(){
 
 
@@ -65,7 +70,11 @@ public class TimePickerActivity extends AppCompatActivity {
                                 );
 
                                 try {
-                                    Date date = f24Hours.parse(time);
+                                    Date parsedDate = f24Hours.parse(time);
+                                    Date date = new Date();
+                                    date.setHours(parsedDate.getHours());
+                                    date.setMinutes(parsedDate.getMinutes());
+                                    date.setSeconds(parsedDate.getSeconds());
                                     o.setPickUpDate(date);
 
 
@@ -73,12 +82,12 @@ public class TimePickerActivity extends AppCompatActivity {
                                     SimpleDateFormat f12Hours = new SimpleDateFormat(
                                             "hh:mm aa"
                                     );
-                                    tvTimer1.setText(f12Hours.format(date));
+                                    tvTimer1.setText(f12Hours.format(parsedDate));
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
                             }
-                        },12,0,false
+                        },12,0,true
                 );
                 //Set transparent background
                 timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

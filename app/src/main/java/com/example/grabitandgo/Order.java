@@ -86,7 +86,7 @@ public class Order implements Serializable {
         return orderDate;
     }
 
-    public Date getPickUpDateDate() { return pickUpDate;}
+    public Date getPickUpDate() { return pickUpDate;}
 
     public String getUserId() {
         return userId;

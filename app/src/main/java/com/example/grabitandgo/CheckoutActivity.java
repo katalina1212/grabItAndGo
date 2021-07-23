@@ -2,6 +2,7 @@ package com.example.grabitandgo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
@@ -54,6 +56,41 @@ public class CheckoutActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout_java);
+
+        //Initialize and assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.connect);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.connect:
+                        return true;
+                    case R.id.rewards:
+                        startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.orders:
+                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
 
         o=(Order)getIntent().getExtras().get("order");
 
@@ -219,6 +256,12 @@ public class CheckoutActivity extends AppCompatActivity {
         o.setOrder_id(App.user.getUid()+"/"+id);
         DatabaseReference myRef = database.getReference("users/"+App.user.getUid()+"/orders/"+id);
         myRef.child("CoffeeId").setValue(o.getCoffee_id());
+        myRef.child("CoffeeQty").setValue(o.getQty());
+        myRef.child("CoffeeSize").setValue(o.getSize());
+        myRef.child("CoffeeSugar").setValue(o.getSugar());
+        myRef.child("CoffeeMilk").setValue(o.getMilk());
+        myRef.child("CoffeePrice").setValue(o.getPrice());
+        myRef.child("CoffeePickDate").setValue(o.getPickUpDate().getTime());
         return id;
     }
 }

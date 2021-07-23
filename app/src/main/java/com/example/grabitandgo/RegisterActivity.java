@@ -66,30 +66,24 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnCompleteListener(thisActivity, (OnCompleteListener<AuthResult>) task -> {
                             if (task.isSuccessful()) {
 
-                                //Send verification email
-                                /*mAuth.createUserWithEmailAndPassword(emailText, passwordText)
-                                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                final FirebaseUser user = mAuth.getCurrentUser();
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener( new OnCompleteListener() {
                                             @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                            public void onComplete(@NonNull Task task) {
+
                                                 if (task.isSuccessful()) {
-                                                    // Sign in success, update UI with the signed-in user's information
-                                                    Log.d(TAG, "createUserWithEmail:success");
-                                                    FirebaseUser user = mAuth.getCurrentUser();
-                                                    updateUI(user);
-                                                } else {
-                                                    // If sign in fails, display a message to the user.
-                                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                                    Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                                                    Toast.makeText(RegisterActivity.this,
+                                                            "Verification email sent to " + user.getEmail(),
                                                             Toast.LENGTH_SHORT).show();
-                                                    updateUI(null);
+                                                } else {
+
+                                                    Toast.makeText(RegisterActivity.this,
+                                                            "Failed to send verification email.",
+                                                            Toast.LENGTH_SHORT).show();
                                                 }
                                             }
-                                        });*/
-
-
-                               //Toast.makeText(RegisterActivity.this, "User created", Toast.LENGTH_SHORT).show();
-
-                                // Sign in success, update UI with the signed-in user's information
+                                        });
 
                                 App.user = mAuth.getCurrentUser();
 

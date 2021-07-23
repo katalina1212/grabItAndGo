@@ -23,7 +23,7 @@
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="0dp"
-        app:itemBackground="@color/design_default_color_primary_dark"
+        app:itemBackground="@color/purple_700"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +49,8 @@
 
     <Button
         android:id="@+id/confirm_time_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#111945"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"

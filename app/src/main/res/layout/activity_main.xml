@@ -45,6 +45,8 @@
 
     <Button
         android:id="@+id/clickSelection_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#111945"
         android:layout_width="269dp"
         android:layout_height="41dp"
         android:layout_alignParentEnd="true"
@@ -61,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/design_default_color_primary_dark"
+        app:itemBackground="@color/purple_700"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"

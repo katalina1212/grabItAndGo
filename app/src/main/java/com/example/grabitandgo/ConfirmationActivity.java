@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ConfirmationActivity extends AppCompatActivity {
 
     private ImageView imageView12;
@@ -41,7 +44,12 @@ public class ConfirmationActivity extends AppCompatActivity {
         item_name.setText(o.getCoffeeName());
         qty.setText(String.valueOf(o.getQty()));
         reward_point.setText(String.valueOf(o.getQty()));
-        collection_time.setText(o.getPickUpDateDate().toString());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String formattedDate = simpleDateFormat.format(o.getPickUpDate());
+
+
+        collection_time.setText(formattedDate);
         item_price.setText(String.valueOf(o.getPrice()));
 
         Picasso.with(this).load(o.getCoffeeImage()).into(imageView12);
