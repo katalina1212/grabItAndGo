@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText passwordText;
     private EditText password2Text;
     private RegisterActivity thisActivity = this;
+    private CheckBox checkBox;
 
     private FirebaseAuth mAuth;
 
@@ -49,6 +52,14 @@ public class RegisterActivity extends AppCompatActivity {
         emailText=findViewById(R.id.email_text);
         passwordText=findViewById(R.id.password_text);
         password2Text=findViewById(R.id.password2_text);
+        checkBox=findViewById(R.id.checkBox);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                registerBtn.setEnabled(isChecked);
+            }
+        });
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -62,6 +73,33 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                System.out.println(passwordText.getText());
+
+                System.out.println(password2Text.getText());
+
+                if(usernameText.getText().toString().equals("")){
+                    usernameText.setError("Username is required");
+                    return;
+                }
+                if(emailText.getText().toString().equals("")){
+                    emailText.setError("Email is required");
+                    return;
+                }
+                if(passwordText.getText().toString().equals("")){
+                    passwordText.setError("Password is required");
+                    return;
+                }
+                if(passwordText.getText().toString().length()<8){
+                    passwordText.setError("Password must be longer than 8 characters");
+                    return;
+                }
+                if(!password2Text.getText().toString().equals(passwordText.getText().toString())){
+                    password2Text.setError("Passwords don't match");
+                    return;
+                }
+
+
                 mAuth.createUserWithEmailAndPassword(emailText.getText().toString().trim(), passwordText.getText().toString().trim())
                         .addOnCompleteListener(thisActivity, (OnCompleteListener<AuthResult>) task -> {
                             if (task.isSuccessful()) {
@@ -95,25 +133,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 openTermsConditionsActivity(App.user.getUid());
                                 System.out.println(App.user.getEmail());
                             } else {
-                                //Toast.makeText(RegisterActivity.this, "Error!" +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Error!" +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                 // If sign in fails, display a message to the user.
 
-                               /* if(TextUtils.isEmpty(username_text)){
-                                    usernameText.setError("Email is required");
-                                    return;
-                                }
-                                if(TextUtils.isEmpty(email_text)){
-                                   emailText.setError("Email is required");
-                                   return;
-                                }
-                                if(TextUtils.isEmpty(password_text)){
-                                    passwordText.setError("Email is required");
-                                    return;
-                                }
-                                if(password_text.length()<8){
-                                    passwordText.setError("Password must be longer than 8 characters");
-                                    return;
-                                }*/
                             }
 
                         });

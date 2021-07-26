@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,13 +55,23 @@ public class LoginActivity extends AppCompatActivity {
 
                                     App.user = mAuth.getCurrentUser();
 
-                                    openHomePage(App.user.getUid());
+                                    if(App.user.isEmailVerified())
+                                    {
+                                        openHomePage(App.user.getUid());
+                                    }else {
+                                        App.user = null;
+                                        Toast.makeText(getBaseContext(),
+                                                "Email not verified.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
 
-                                    System.out.println(App.user.getEmail());
                                 } else {
                                     // If sign in fails, display a message to the user.
 
                                     System.out.println("Failed to login");
+                                    Toast.makeText(getBaseContext(),
+                                            "Failed to login.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
 
                             }

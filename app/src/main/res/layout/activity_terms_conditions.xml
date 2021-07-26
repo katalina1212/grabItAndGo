@@ -13,58 +13,77 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@color/black"
+        android:gravity="center_horizontal"
         android:text="Terms and Conditions"
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
-        android:background="@color/black"
-        android:gravity="center"
-        android:lineSpacingExtra="8sp"
-        android:text="Auxerunt haec vulgi sordidioris audaciam, quod cum ingravesceret penuria commeatuum,         famis et furoris inpulsu Eubuli cuiusdam inter suos clari domum ambitiosam ignibus subditis inflammavit rectoremque ut sibi iudicio imperiali addictum calcibus incessens et pugnis conculcans seminecem laniatu miserando discerpsit. post cuius lacrimosum interitum in unius exitio quisque imaginem periculi sui considerans documento recenti similia formidabat.  Illud tamen te esse admonitum volo, primum ut qualis es talem te esse omnes existiment ut"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="354dp"
+        android:layout_height="507dp"
+        android:layout_marginTop="20dp"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/terms_text" />
+        app:layout_constraintTop_toBottomOf="@+id/terms_text">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="350dp"
+            android:layout_height="500dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="Auxerunt haec vulgi sordidioris audaciam, quod cum ingravesceret penuria commeatuum,         famis et furoris inpulsu Eubuli cuiusdam inter suos clari domum ambitiosam ignibus subditis inflammavit rectoremque ut sibi iudicio imperiali addictum calcibus incessens et pugnis conculcans seminecem laniatu miserando discerpsit. post cuius lacrimosum interitum in unius exitio quisque imaginem periculi sui considerans documento recenti similia formidabat.  Illud tamen te esse admonitum volo, primum ut qualis es talem te esse omnes existiment ut"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/terms_text" />
+
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/decline_btn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:backgroundTint="#111945"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#111945"
         android:text="Decline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/accept_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
     <Button
         android:id="@+id/accept_btn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:backgroundTint="#111945"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#111945"
         android:text="Accept"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/decline_btn" />
+        app:layout_constraintStart_toEndOf="@+id/decline_btn"
+        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

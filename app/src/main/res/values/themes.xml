@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
-    <style name="Theme.GrabItAndGo" parent="Theme.AppCompat.DayNight" android:forceDarkAllowed="true">
+    <style name="Theme.GrabItAndGo" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
