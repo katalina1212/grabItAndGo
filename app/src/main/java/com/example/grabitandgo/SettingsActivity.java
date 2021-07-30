@@ -6,15 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private TextView username;
+    private TextView termsConditionsBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        username = findViewById(R.id.username);
+        termsConditionsBtn = findViewById(R.id.termsConditionsBtn);
+        username.setText(App.userName);
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -50,5 +59,16 @@ public class SettingsActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        termsConditionsBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openTermsConditionsActivity();
+            }
+        });
+    }
+
+    private void openTermsConditionsActivity(){
+        Intent intent = new Intent(this, TermsConditionsActivity.class);
+        startActivity(intent);
     }
 }

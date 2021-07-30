@@ -13,20 +13,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class OrdersActivity extends AppCompatActivity {
 
-    private Button select_pickup_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
 
-        select_pickup_btn =findViewById(R.id.select_pickup_btn);
-
-        select_pickup_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openTimePickerActivity();
-            }
-        });
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -62,9 +54,5 @@ public class OrdersActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-    private void openTimePickerActivity(){
-        Intent intent = new Intent(this, TimePickerActivity.class);
-        startActivity(intent);
     }
 }

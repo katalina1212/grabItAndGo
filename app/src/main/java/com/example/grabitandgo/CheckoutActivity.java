@@ -262,6 +262,11 @@ public class CheckoutActivity extends AppCompatActivity {
         myRef.child("CoffeeMilk").setValue(o.getMilk());
         myRef.child("CoffeePrice").setValue(o.getPrice());
         myRef.child("CoffeePickDate").setValue(o.getPickUpDate().getTime());
+
+         myRef = database.getReference("users/"+App.user.getUid()+"/rewardPoints");
+         App.rewardPoints+=o.getQty();
+         myRef.setValue(App.rewardPoints);
+
         return id;
     }
 }

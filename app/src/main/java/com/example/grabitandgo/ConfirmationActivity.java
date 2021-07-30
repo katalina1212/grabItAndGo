@@ -15,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
@@ -33,7 +32,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirmation);
 
         imageView12 =findViewById(R.id.imageView12);
-        item_name =findViewById(R.id.item_name);
+        item_name =findViewById(R.id.purchase_date);
         qty =findViewById(R.id.qty);
         item_price =findViewById(R.id.item_price);
         reward_point =findViewById(R.id.reward_point);

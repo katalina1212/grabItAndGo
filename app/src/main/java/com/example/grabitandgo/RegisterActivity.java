@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText password2Text;
     private RegisterActivity thisActivity = this;
     private CheckBox checkBox;
+    private TextView termsCond;
 
     private FirebaseAuth mAuth;
 
@@ -53,6 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
         passwordText=findViewById(R.id.password_text);
         password2Text=findViewById(R.id.password2_text);
         checkBox=findViewById(R.id.checkBox);
+        termsCond=findViewById(R.id.termsCond);
+
+
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -60,6 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
                 registerBtn.setEnabled(isChecked);
             }
         });
+
+
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -128,9 +134,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("users/"+App.user.getUid());
                                 myRef.child("username").setValue(usernameText.getText().toString());
+                                myRef.child("rewardPoints").setValue(0);
 
 
-                                openTermsConditionsActivity(App.user.getUid());
+                                openLoginAfterRegistration(App.user.getUid());
                                 System.out.println(App.user.getEmail());
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Error!" +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
@@ -140,16 +147,28 @@ public class RegisterActivity extends AppCompatActivity {
 
                         });
             }
+
         });
+
+
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openLoginActivity();
             }
+
         });
+
+        termsCond.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openTermsConditionsActivity();
+            }
+
+        });
+
     }
-    private void openTermsConditionsActivity(String userid){
-        Intent intent = new Intent(this, TermsConditionsActivity.class);
+    private void openLoginAfterRegistration(String userid){
+        Intent intent = new Intent(this, LoginActivity.class);
         Bundle b = new Bundle();
         b.putString("user", userid); //Your id
         intent.putExtras(b); //Put your id to your next Intent
@@ -160,4 +179,10 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+
+    private void openTermsConditionsActivity(){
+            Intent intent = new Intent(this, TermsConditionsActivity.class);
+            startActivity(intent);
+        }
 }

@@ -36,7 +36,7 @@
         app:srcCompat="@drawable/coffee" />
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/purchase_date"
         android:layout_width="185dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
@@ -74,7 +74,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toEndOf="@+id/item_name"
+        app:layout_constraintStart_toEndOf="@+id/purchase_date"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -93,7 +93,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_name" />
+        app:layout_constraintTop_toBottomOf="@+id/purchase_date" />
 
     <TextView
         android:id="@+id/reward_point"
