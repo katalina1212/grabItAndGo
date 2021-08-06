@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,16 +12,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CategoryListItemAdapter extends ArrayAdapter<CoffeeCategory> {
     public CategoryListItemAdapter(@NonNull Context context, @NonNull List<CoffeeCategory> objects) {
-        super(context, 0, objects);
+        super(context,0, objects);
+
     }
 
 
@@ -31,11 +29,11 @@ public class CategoryListItemAdapter extends ArrayAdapter<CoffeeCategory> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final CoffeeCategory currentItem = getItem(position);
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.category_list_item, parent, false);
-        TextView categoryName = convertView.findViewById(R.id.category_name);
-        TextView categoryPrice = convertView.findViewById(R.id.category_price);
+        TextView categoryName = convertView.findViewById(R.id.purchase_date);
+        TextView categoryPrice = convertView.findViewById(R.id.purchase_price);
         categoryPrice.setText("$" + currentItem.getPrice());
 
-        ImageView categoryImage = convertView.findViewById(R.id.category_image);
+        ImageView categoryImage = convertView.findViewById(R.id.qrCode_image);
         Picasso.with(parent.getContext()).load(currentItem.getImage()).into(categoryImage);
 
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_200"
     tools:context=".ConnectActivity">
 
     <fragment
@@ -35,7 +36,6 @@
         app:layout_constraintStart_toEndOf="@+id/face_btn"
         app:layout_constraintTop_toBottomOf="@+id/map"
         app:srcCompat="@drawable/instagram_icon" />
-
 
 
     <ImageView

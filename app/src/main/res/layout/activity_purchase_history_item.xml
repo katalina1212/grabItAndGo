@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/backgrond"
     android:layout_width="match_parent"
-    android:layout_height="165dp"
+    android:layout_height="140dp"
     android:background="@color/purple_700"
     android:backgroundTint="@color/purple_200">
 
@@ -12,8 +12,8 @@
         android:id="@+id/purchase_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="34sp"
+        android:text="purchase_date"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -23,14 +23,13 @@
 
     <ImageView
         android:id="@+id/qrCode_image"
-        android:layout_width="160dp"
-        android:layout_height="140dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/coffee" />
+        app:srcCompat="@drawable/qr" />
 
     <TextView
         android:id="@+id/purchase_price"
