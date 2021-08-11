@@ -41,7 +41,6 @@
             android:name=".ConnectActivity"
             android:label="map" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".OrdersActivity" />
         <activity android:name=".RewardsActivity" />
         <activity
             android:name=".cardDetailsActivity"

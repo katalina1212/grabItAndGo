@@ -15,6 +15,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private TextView username;
     private TextView termsConditionsBtn;
+    private TextView purchase_history_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         termsConditionsBtn = findViewById(R.id.termsConditionsBtn);
+        purchase_history_btn = findViewById(R.id.purchase_history_btn);
         username.setText(App.userName);
 
         //Initialize and assign Variable
@@ -49,7 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        startActivity(new Intent(getApplicationContext(), PurchaseHistoryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.settings:
@@ -65,10 +67,21 @@ public class SettingsActivity extends AppCompatActivity {
                 openTermsConditionsActivity();
             }
         });
+
+        purchase_history_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openPurchaseHistoryActivity();
+            }
+        });
     }
 
     private void openTermsConditionsActivity(){
         Intent intent = new Intent(this, TermsConditionsActivity.class);
+        startActivity(intent);
+    }
+
+    private void openPurchaseHistoryActivity(){
+        Intent intent = new Intent(this, PurchaseHistoryActivity.class);
         startActivity(intent);
     }
 }

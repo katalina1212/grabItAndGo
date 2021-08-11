@@ -33,14 +33,14 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         purchaseHistoryList = findViewById(R.id.purchaseHistoryList);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Category");
+        final DatabaseReference[] myRef = {database.getReference("Category")};
 
         final List<CoffeeCategory> items = new ArrayList<>();
 
         // myRef.setValue("Hello, World!");
         // Read from the database
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef[0].addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -59,34 +59,22 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                     items.add(item);
 
 
-                    // here you can access to name property like university.name
+                    myRef[0] = database.getReference("users/"+App.user.getUid()+"/orders");
 
-                }
-            }
+                    final List<Order> orderList = new ArrayList<>();
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Firebase", "Failed to read value.", error.toException());
-            }
-        });
+                    // myRef.setValue("Hello, World!");
+                    // Read from the database
 
-        myRef = database.getReference("users/"+App.user.getUid()+"/orders");
+                    myRef[0].addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // This method is called once with the initial value and again
+                            // whenever data at this location is updated.
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-        final List<Order> orderList = new ArrayList<>();
-
-        // myRef.setValue("Hello, World!");
-        // Read from the database
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    // public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, java.util.Date
-                    //  pickUpDate, String coffeeName, String CoffeeImage, String userId, int freeQuantity)
+                                // public Order(String order_id, String coffee_id, Double price, int qty, int size, int sugar, int milk, Date orderDate, java.util.Date
+                                //  pickUpDate, String coffeeName, String CoffeeImage, String userId, int freeQuantity)
 
 
 
@@ -99,35 +87,46 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 //                        myRef.child("CoffeePickDate").setValue(o.getPickUpDate().getTime());
 //                        myRef.child("CoffeeFreeQty").setValue(o.getFreeQuantity());
 
-                    CoffeeCategory coffeeCategory = null;
-                    for (CoffeeCategory c : items) {
-                        if (c.getId().equals(postSnapshot.child("CoffeeId").getValue(String.class))) {
-                            coffeeCategory = c;
+                                CoffeeCategory coffeeCategory = null;
+                                for (CoffeeCategory c : items) {
+                                    if (c.getId().equals(postSnapshot.child("CoffeeId").getValue(String.class))) {
+                                        coffeeCategory = c;
+                                    }
+                                }
+
+                                Order item = new Order(
+                                        App.user.getUid()+"/"+postSnapshot.getKey(),
+                                        postSnapshot.child("CoffeeId").getValue(String.class),
+                                        postSnapshot.child("CoffeePrice").getValue(Double.class),
+                                        postSnapshot.child("CoffeeQty").getValue(Integer.class),
+                                        postSnapshot.child("CoffeeSize").getValue(Integer.class),
+                                        postSnapshot.child("CoffeeSugar").getValue(Integer.class),
+                                        postSnapshot.child("CoffeeMilk").getValue(Integer.class),
+                                        new Date(Long.parseLong(postSnapshot.getKey())),
+                                        new Date(postSnapshot.child("CoffeePickDate").getValue(Long.class)),
+                                        coffeeCategory.getName(),
+                                        coffeeCategory.getImage(),
+                                        App.user.getUid(),
+                                        postSnapshot.child("CoffeeFreeQty").getValue(Integer.class));
+
+                                orderList.add(item);
+
+
+                                // here you can access to name property like university.name
+
+                            }
+                            purchaseHistoryList.setAdapter(new PurchaseHistoryItemAdapter(thisActivity, orderList));
                         }
-                    }
 
-                    Order item = new Order(
-                            postSnapshot.getKey(),
-                            postSnapshot.child("CoffeeId").getValue(String.class),
-                            postSnapshot.child("CoffeePrice").getValue(Double.class),
-                            postSnapshot.child("CoffeeQty").getValue(Integer.class),
-                            postSnapshot.child("CoffeeSize").getValue(Integer.class),
-                            postSnapshot.child("CoffeeSugar").getValue(Integer.class),
-                            postSnapshot.child("CoffeeMilk").getValue(Integer.class),
-                            new Date(Integer.parseInt(postSnapshot.getKey())),
-                            new Date(postSnapshot.child("CoffeePickDate").getValue(Long.class)),
-                            coffeeCategory.getName(),
-                            coffeeCategory.getImage(),
-                            App.user.getUid(),
-                            postSnapshot.child("CoffeeFreeQty").getValue(Integer.class));
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            // Failed to read value
+                            Log.w("Firebase", "Failed to read value.", error.toException());
+                        }
+                    });
 
-                    orderList.add(item);
-
-
-                    // here you can access to name property like university.name
 
                 }
-                purchaseHistoryList.setAdapter(new CategoryListItemAdapter(thisActivity, orderList));
             }
 
             @Override
@@ -136,6 +135,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                 Log.w("Firebase", "Failed to read value.", error.toException());
             }
         });
+
 
         //Initialize and assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -161,10 +161,12 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        startActivity(new Intent(getApplicationContext(), PurchaseHistoryActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
 

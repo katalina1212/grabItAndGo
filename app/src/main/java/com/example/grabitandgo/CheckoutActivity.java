@@ -79,7 +79,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        startActivity(new Intent(getApplicationContext(), PurchaseHistoryActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.settings:
