@@ -9,7 +9,6 @@ import android.widget.Button;
 
 public class TermsConditionsActivity extends AppCompatActivity {
 
-    private Button declineBtn;
     private Button acceptBtn;
 
     @Override
@@ -17,7 +16,6 @@ public class TermsConditionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_conditions);
 
-        declineBtn=findViewById(R.id.decline_btn);
         acceptBtn=findViewById(R.id.accept_btn);
 
         acceptBtn.setOnClickListener(new View.OnClickListener() {
@@ -26,19 +24,11 @@ public class TermsConditionsActivity extends AppCompatActivity {
             }
         });
 
-        declineBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openBackLoginActivity();
-            }
-        });
+
     }
     private void openMainActivity(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 
-    private void openBackLoginActivity(){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
 }

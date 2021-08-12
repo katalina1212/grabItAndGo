@@ -41,7 +41,7 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="350dp"
-                android:layout_height="500dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
@@ -56,20 +56,6 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/decline_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#111945"
-        android:text="Decline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/accept_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
-
-    <Button
         android:id="@+id/accept_btn"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="100dp"
@@ -77,10 +63,10 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#111945"
-        android:text="Accept"
+        android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/decline_btn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
 

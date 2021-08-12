@@ -82,7 +82,7 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
 
                 /* Fill it with Data */
                 emailIntent.setType("plain/text");
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"GrabItAndGo@gmail.com"});
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"Coffee2Go@gmail.com"});
                 emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Cafe shop");
 
                 /* Send it off to the Activity-Chooser */
@@ -154,6 +154,7 @@ public class ConnectActivity extends FragmentActivity implements OnMapReadyCallb
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Cafe Shop in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMinZoomPreference(10);
     }
 
 }
