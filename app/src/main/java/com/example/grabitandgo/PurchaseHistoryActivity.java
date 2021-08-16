@@ -161,8 +161,8 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), PurchaseHistoryActivity.class));
-                        overridePendingTransition(0, 0);
+                        /*startActivity(new Intent(getApplicationContext(), PurchaseHistoryActivity.class));
+                        overridePendingTransition(0, 0);*/
                         return true;
                     case R.id.settings:
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
